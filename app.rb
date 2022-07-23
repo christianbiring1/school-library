@@ -113,7 +113,7 @@ class App
     end
   end
 
-   def list_rental(person_id)
+  def list_rental(person_id)
     person_rentals = @rental.select { |rental| rental.person.id == person_id }
     if person_rentals.length.positive?
       person_rentals.each do |rental|
