@@ -5,9 +5,9 @@ require_relative 'rental'
 
 class App
   def initialize
-    @book = []
-    @teacher = []
-    @student = []
+    @books = []
+    # @teacher = []
+    # @student = []
     @people = []
     @rental = []
   end
@@ -24,6 +24,7 @@ class App
       puts 'Invalid option'
       create_person
     end
+    puts 'Person created succesfully'
   end
 
   def create_student
@@ -43,7 +44,6 @@ class App
                    end
     student = Student.new(student_age, student_name, is_permitted)
     @people.push(student)
-    puts 'Person created succesfully'
   end
 
   def create_teacher
@@ -55,7 +55,14 @@ class App
     teacher_specialization = gets.chomp
     teacher = Teacher.new(teacher_age, teacher_name, teacher_specialization)
     @people.push(teacher)
-    puts 'Person created successfully'
+  end
+
+  def list_people
+    if @people.empty?
+      puts 'Must a person first'
+    else
+      @people.each { |person| puts "#{person.class} Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    end
   end
 
   def create_book
@@ -64,14 +71,22 @@ class App
     print 'Author: '
     book_author = gets.chomp
     book = Book.new(book_title, book_author)
-    @book.push(book)
+    @books.push(book)
     puts 'Book created successfully'
   end
 
+  def list_books
+    if @books.empty?
+      puts 'There is no book yet'
+    else
+      @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
+    end
+  end
+
   def create_rental
-    if !@book.empty && !@people.empty?
+    if !@books.empty && !@people.empty?
       puts 'Select a book from the following list by number'
-      @book.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}" }
+      @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}" }
       id = gets.chomp.to_i
       puts 'Select a person from the following list by number (not id)'
       @people.each_with_index do |person, index|
@@ -80,7 +95,7 @@ class App
       person_id = gets.chomp.to_i
       puts 'Enter the date in this format yy/mm/dd: '
       date = gets.chomp
-      person_rental = Rental.new(@book[id], @people[person_id], date)
+      person_rental = Rental.new(@books[id], @people[person_id], date)
       @rental.push(person_rental)
       puts 'Rental creared successfully'
     else
@@ -89,18 +104,13 @@ class App
   end
 
   def rental_list
-    if !@rental.empty?
+    if @rental.empty?
+      puts 'Rentals doesn\'t exist yet! come back later'
+    else
       print 'Enter the person_id you wanna get the rental for: '
       person_id = gets.chomp.to_i
       list_rental(person_id)
-    else
-      puts 'Rentals doesn\'t exist yet! come back later'
     end
-  end
-
-  def initial
-    puts 'Welcome to School Library App!'
-    display_options
   end
 
   def display_options
@@ -118,6 +128,7 @@ class App
     run_app(option_id)
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def run_app(option_id)
     case option_id
     when '1'
@@ -133,10 +144,16 @@ class App
     when '6'
       rental_list
     when '7'
-      exit
+      exit_app
     else
       puts 'Choose an existing option!..'
     end
+    display_options
+  end
+  # rubocop:enable Metrics/CyclomaticComplexity
+
+  def initial
+    puts 'Welcome to School Library App!'
     display_options
   end
 end
