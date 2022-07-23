@@ -128,6 +128,10 @@ class App
     run_app(option_id)
   end
 
+  def exit_app
+    puts 'Thank you for using this app! '
+  end
+
   # rubocop:disable Metrics/CyclomaticComplexity
   def run_app(option_id)
     case option_id
