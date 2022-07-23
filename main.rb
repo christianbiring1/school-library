@@ -1,7 +1,10 @@
+#!/usr/bin/env ruby
+
 require_relative 'app'
 
 def main
-  App.new.run_app
+  app = App.new
+  app.initial
 end
 
 main

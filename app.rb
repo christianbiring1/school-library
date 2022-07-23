@@ -19,7 +19,7 @@ class App
     when '1'
       create_student
     when '2'
-      create _teacher
+      create_teacher
     else
       puts 'Invalid option'
       create_person
@@ -61,7 +61,7 @@ class App
     if @people.empty?
       puts 'Must a person first'
     else
-      @people.each { |person| puts "#{person.class} Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+      @people.each { |person| puts "#{[person.class]} Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
   end
 
@@ -84,7 +84,7 @@ class App
   end
 
   def create_rental
-    if !@books.empty && !@people.empty?
+    if @books.size.positive? && @people.size.positive?
       puts 'Select a book from the following list by number'
       @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}" }
       id = gets.chomp.to_i
@@ -113,6 +113,17 @@ class App
     end
   end
 
+   def list_rental(person_id)
+    person_rentals = @rental.select { |rental| rental.person.id == person_id }
+    if person_rentals.length.positive?
+      person_rentals.each do |rental|
+        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+      end
+    else
+      puts 'The selected person has no rentals'
+    end
+  end
+
   def display_options
     puts 'Please choose an option by entering a number'
     puts '1. List all books.'
@@ -130,6 +141,7 @@ class App
 
   def exit_app
     puts 'Thank you for using this app! '
+    exit
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity
