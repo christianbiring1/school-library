@@ -34,6 +34,14 @@ To get a local copy up and running follow these simple example steps.
 
 - GitHub: [@christianbiring1](https://github.com/christianbiring1)
 
+## Author
+
+👤 **Omulu**
+
+- GitHub: [Mikelobi](https://github.com/Mikelobi)
+- Twitter: [Mikelobi](https://twitter.com/omulum)
+- LinkedIn: [Mikelobi](https://www.linkedin.com/in/ugochukwu-omulu/)
+
 ## 🤝 Contributing
 
 - Contributions, issues, and feature requests are welcome!
