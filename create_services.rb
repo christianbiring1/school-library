@@ -1,3 +1,4 @@
+# rubocop:disable Layout/EndOfLine
 def create_person
   print 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
   option = gets.chomp
@@ -12,6 +13,7 @@ def create_person
   end
   puts 'Person created succesfully'
 end
+# rubocop:enable Layout/EndOfLine
 
 def create_student
   print 'Age: '
