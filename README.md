@@ -25,16 +25,20 @@ To get a local copy up and running follow these simple example steps.
 **Using it Locally**
 
 - Clone the project
-  `git clone git@github.com:thecodechaser/school_library.git`
+  `git clone git@github.com:christianbiring1/school-library.git`
   `cd school_library`
+
+- While in the terminal
+
+run `./main.rb`
 
 ## Authors
 
 👤 **Christian Biringanine**
 
 - GitHub: [@christianbiring1](https://github.com/christianbiring1)
-
-## Author
+- Twitter: [@christianbirin4](https://twitter.com/christianbirin4)
+- LinkedIn: [christian Biringanine](https://www.linkedin.com/in/christian-biringanine/)
 
 👤 **Omulu**
 
